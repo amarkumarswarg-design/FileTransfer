@@ -540,7 +540,7 @@ let receivedSize = 0;
 let totalSize = 0;
 let receivedFileName = '';
 let transferStartTime = 0;
-const CHUNK_SIZE = 256 * 1024; // 256KB chunks
+const CHUNK_SIZE = 1024 * 1024; // 1 MB chunks
 
 // ─── Mode switch ──────────────────────────────────────
 function switchMode(mode) {
@@ -649,7 +649,7 @@ function sendFile() {
       const pct = Math.round((bytesSent / file.size) * 100);
       updateProgress('send', pct, bytesSent, file.size);
       // Small delay to prevent buffer overflow
-      setTimeout(sendNextChunk, 5);
+      setTimeout(sendNextChunk, 1);
     };
     reader.readAsArrayBuffer(blob);
   }
